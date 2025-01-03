@@ -72,7 +72,6 @@ const Dashboard = () => {
   return (
     <div className="p-4">
       <h1 className="text-2xl font-bold mb-8">
-        Dashboard de Análisis de Customer Support
       </h1>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -112,6 +111,7 @@ const Dashboard = () => {
               <ul className="list-disc pl-5">
                 <li>Mayor actividad: 9:00 AM (15.7% de mensajes)</li>
                 <li>Horario productivo: 9:00 AM - 2:00 PM</li>
+                <li>96.7% de mensajes en horario laboral</li>
                 <li>Actividad consistente durante horario laboral</li>
               </ul>
             </div>
@@ -137,7 +137,8 @@ const Dashboard = () => {
               <ul className="list-disc pl-5">
                 <li>Mayor actividad: Viernes (27.1%)</li>
                 <li>Distribución uniforme entre semana</li>
-                <li>Mínima actividad en fin de semana</li>
+                <li>Mayor eficiencia durante mañanas</li>
+                <li>Respuestas limitadas fuera de horario</li>
               </ul>
             </div>
           </div>
@@ -180,6 +181,7 @@ const Dashboard = () => {
                 <li>Pico principal: 10:00 AM (14.11%)</li>
                 <li>Segundo pico: 11:00 AM (10.06%)</li>
                 <li>Actividad significativa en noche: 9:00 PM</li>
+                <li>Respuestas más rápidas fuera de horario</li>
               </ul>
             </div>
           </div>
@@ -202,6 +204,7 @@ const Dashboard = () => {
             <div className="mt-4 bg-gray-50 p-4 rounded">
               <h4 className="font-semibold mb-2">Análisis:</h4>
               <ul className="list-disc pl-5">
+                <li>Solo 5.4% de mensajes en horario asignado</li>
                 <li>Concentración en fin de semana (70.12%)</li>
                 <li>Sábado: 36.72% de mensajes</li>
                 <li>Domingo: 33.40% de mensajes</li>
@@ -227,7 +230,7 @@ const Dashboard = () => {
             <h3 className="font-semibold mb-2">Zoey Vela:</h3>
             <ul className="list-disc pl-5">
               <li>Reasignar como especialista de fin de semana</li>
-              <li>Ajustar horario entre semana: 9am-12pm</li>
+              <li>Ajustar horario entre semana</li>
               <li>Expandir cobertura de fin de semana</li>
             </ul>
           </div>

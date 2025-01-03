@@ -1,4 +1,5 @@
 import "./App.css";
+import Distribucion from "./components/Distribucion";
 import Dashboard from "./components/Dashboard";
 import MensajeDashboard from "./components/MensajeDashboard";
 
@@ -14,6 +15,7 @@ function App() {
       </header>
       <main>
         <Dashboard />
+        <Distribucion />
         <MensajeDashboard />
       </main>
     </div>
