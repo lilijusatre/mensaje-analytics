@@ -1,7 +1,9 @@
 import "./App.css";
 import Distribucion from "./components/Distribucion";
+import ZoeyWeekendAnalysis from "./components/ZoeyWeekendAnalysis";
 import Dashboard from "./components/Dashboard";
 import MensajeDashboard from "./components/MensajeDashboard";
+import WeekdayAnalysis from "./components/WeekdayAnalysis";
 
 function App() {
   return (
@@ -15,8 +17,10 @@ function App() {
       </header>
       <main>
         <Dashboard />
-        <Distribucion />
         <MensajeDashboard />
+        <Distribucion />
+        <WeekdayAnalysis />
+        <ZoeyWeekendAnalysis />
       </main>
     </div>
   );

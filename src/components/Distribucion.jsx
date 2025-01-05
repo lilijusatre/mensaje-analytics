@@ -132,7 +132,7 @@ const MessageVisualization = () => {
           <ResponsiveContainer width="100%" height="100%">
             <ComposedChart
               data={data}
-              margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+              margin={{ top: 20, right: 30, left: 20, bottom: 10 }}
             >
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis
@@ -141,7 +141,7 @@ const MessageVisualization = () => {
               />
               <YAxis
                 label={{
-                  value: "Número de mensajes",
+                  value: "              Número de mensajes",
                   angle: -90,
                   position: "insideLeft",
                 }}
@@ -162,7 +162,7 @@ const MessageVisualization = () => {
                 dataKey="promedioMensajes"
                 name="Promedio por hora"
                 stroke="#000000"
-                strokeWidth={2}
+                strokeWidth={4}
                 dot={false}
               />
             </ComposedChart>
