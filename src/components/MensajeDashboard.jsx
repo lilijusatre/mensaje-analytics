@@ -1,5 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import {
+  BarChart,
+  Bar,
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 import Papa from "papaparse";
 import _ from "lodash";
 
@@ -19,33 +30,137 @@ const ResponseTimeDashboard = () => {
     "User #955217": "User #955217",
   };
 
-  const [selectedMetric, setSelectedMetric] = useState('messages'); // 'messages' o 'times'
+  const [selectedMetric, setSelectedMetric] = useState("messages"); // 'messages' o 'times'
 
   const hourlyMetrics = [
-    { hour: "07:00", messages: 2.8, maxTime: 35, minTime: 8, lizbeth: 0, zoey: 15, csSupport: 12 },
-    { hour: "08:00", messages: 36.0, maxTime: 42, minTime: 5, lizbeth: 0, zoey: 28, csSupport: 18 },
-    { hour: "09:00", messages: 19.9, maxTime: 38, minTime: 4, lizbeth: 25, zoey: 22, csSupport: 15 },
-    { hour: "10:00", messages: 39.6, maxTime: 45, minTime: 3, lizbeth: 35, zoey: 18, csSupport: 20 },
-    { hour: "11:00", messages: 19.8, maxTime: 52, minTime: 5, lizbeth: 38, zoey: 5, csSupport: 22 },
-    { hour: "12:00", messages: 14.3, maxTime: 48, minTime: 6, lizbeth: 30, zoey: 0, csSupport: 18 },
-    { hour: "13:00", messages: 14.4, maxTime: 55, minTime: 7, lizbeth: 28, zoey: 0, csSupport: 15 },
-    { hour: "14:00", messages: 15.1, maxTime: 50, minTime: 5, lizbeth: 32, zoey: 0, csSupport: 17 },
-    { hour: "15:00", messages: 13.9, maxTime: 58, minTime: 6, lizbeth: 35, zoey: 0, csSupport: 20 },
-    { hour: "16:00", messages: 12.7, maxTime: 62, minTime: 8, lizbeth: 30, zoey: 0, csSupport: 16 },
-    { hour: "17:00", messages: 11.8, maxTime: 65, minTime: 7, lizbeth: 25, zoey: 0, csSupport: 12 },
-    { hour: "18:00", messages: 12.5, maxTime: 70, minTime: 9, lizbeth: 20, zoey: 0, csSupport: 10 },
-    { hour: "19:00", messages: 22.0, maxTime: 75, minTime: 10, lizbeth: 0, zoey: 0, csSupport: 8 }
+    {
+      hour: "07:00",
+      messages: 2.8,
+      maxTime: 35,
+      minTime: 8,
+      lizbeth: 0,
+      zoey: 15,
+      csSupport: 12,
+    },
+    {
+      hour: "08:00",
+      messages: 36.0,
+      maxTime: 42,
+      minTime: 5,
+      lizbeth: 0,
+      zoey: 28,
+      csSupport: 18,
+    },
+    {
+      hour: "09:00",
+      messages: 19.9,
+      maxTime: 38,
+      minTime: 4,
+      lizbeth: 25,
+      zoey: 22,
+      csSupport: 15,
+    },
+    {
+      hour: "10:00",
+      messages: 39.6,
+      maxTime: 45,
+      minTime: 3,
+      lizbeth: 35,
+      zoey: 18,
+      csSupport: 20,
+    },
+    {
+      hour: "11:00",
+      messages: 19.8,
+      maxTime: 52,
+      minTime: 5,
+      lizbeth: 38,
+      zoey: 5,
+      csSupport: 22,
+    },
+    {
+      hour: "12:00",
+      messages: 14.3,
+      maxTime: 48,
+      minTime: 6,
+      lizbeth: 30,
+      zoey: 0,
+      csSupport: 18,
+    },
+    {
+      hour: "13:00",
+      messages: 14.4,
+      maxTime: 55,
+      minTime: 7,
+      lizbeth: 28,
+      zoey: 0,
+      csSupport: 15,
+    },
+    {
+      hour: "14:00",
+      messages: 15.1,
+      maxTime: 50,
+      minTime: 5,
+      lizbeth: 32,
+      zoey: 0,
+      csSupport: 17,
+    },
+    {
+      hour: "15:00",
+      messages: 13.9,
+      maxTime: 58,
+      minTime: 6,
+      lizbeth: 35,
+      zoey: 0,
+      csSupport: 20,
+    },
+    {
+      hour: "16:00",
+      messages: 12.7,
+      maxTime: 62,
+      minTime: 8,
+      lizbeth: 30,
+      zoey: 0,
+      csSupport: 16,
+    },
+    {
+      hour: "17:00",
+      messages: 11.8,
+      maxTime: 65,
+      minTime: 7,
+      lizbeth: 25,
+      zoey: 0,
+      csSupport: 12,
+    },
+    {
+      hour: "18:00",
+      messages: 12.5,
+      maxTime: 70,
+      minTime: 9,
+      lizbeth: 20,
+      zoey: 0,
+      csSupport: 10,
+    },
+    {
+      hour: "19:00",
+      messages: 22.0,
+      maxTime: 75,
+      minTime: 10,
+      lizbeth: 0,
+      zoey: 0,
+      csSupport: 8,
+    },
   ];
 
   useEffect(() => {
     const analyzeResponseTimes = async () => {
       try {
-        const response = await fetch('/mensajes.csv');
-      const text = await response.text();
-      const result = Papa.parse(text, {
-        header: true,
-        skipEmptyLines: true
-      });
+        const response = await fetch("/mensajes.csv");
+        const text = await response.text();
+        const result = Papa.parse(text, {
+          header: true,
+          skipEmptyLines: true,
+        });
 
         // Agrupar mensajes por conversación
         const conversationGroups = _.groupBy(result.data, "conversation ID");
@@ -105,7 +220,7 @@ const ResponseTimeDashboard = () => {
     };
 
     analyzeResponseTimes();
-  }, []);
+  });
 
   if (loading) {
     return <div className="text-center p-4">Cargando datos...</div>;
@@ -158,13 +273,13 @@ const ResponseTimeDashboard = () => {
       </div>
 
       <div className="space-y-6">
-      <div className="bg-white rounded-lg border p-6 shadow-sm">
-        <div className="mb-6">
-          <h2 className="text-2xl font-semibold mb-2">
-            Análisis Integral de Tiempos de Respuesta
-          </h2>
+        <div className="bg-white rounded-lg border p-6 shadow-sm">
+          <div className="mb-6">
+            <h2 className="text-2xl font-semibold mb-2">
+              Análisis Integral de Tiempos de Respuesta
+            </h2>
+          </div>
         </div>
-      </div>
         {/* Tabla de métricas detalladas */}
         <div className="mb-8 overflow-x-auto">
           <table className="min-w-full border-collapse">
@@ -183,7 +298,9 @@ const ResponseTimeDashboard = () => {
               {hourlyMetrics.map((row) => (
                 <tr key={row.hour} className="hover:bg-gray-50">
                   <td className="border p-2 font-medium">{row.hour}</td>
-                  <td className="border p-2 text-right">{row.messages.toFixed(1)}</td>
+                  <td className="border p-2 text-right">
+                    {row.messages.toFixed(1)}
+                  </td>
                   <td className="border p-2 text-right">{row.maxTime}</td>
                   <td className="border p-2 text-right">{row.minTime}</td>
                   <td className="border p-2 text-right">{row.lizbeth}</td>
@@ -196,13 +313,15 @@ const ResponseTimeDashboard = () => {
               <tr>
                 <td className="border p-2 font-medium">Total</td>
                 <td className="border p-2 text-right">
-                  {hourlyMetrics.reduce((sum, row) => sum + row.messages, 0).toFixed(1)}
+                  {hourlyMetrics
+                    .reduce((sum, row) => sum + row.messages, 0)
+                    .toFixed(1)}
                 </td>
                 <td className="border p-2 text-right">
-                  {Math.max(...hourlyMetrics.map(row => row.maxTime))}
+                  {Math.max(...hourlyMetrics.map((row) => row.maxTime))}
                 </td>
                 <td className="border p-2 text-right">
-                  {Math.min(...hourlyMetrics.map(row => row.minTime))}
+                  {Math.min(...hourlyMetrics.map((row) => row.minTime))}
                 </td>
                 <td className="border p-2 text-right">
                   {hourlyMetrics.reduce((sum, row) => sum + row.lizbeth, 0)}
@@ -220,7 +339,9 @@ const ResponseTimeDashboard = () => {
 
         {/* Gráfica de mensajes por hora */}
         <div>
-          <h3 className="text-lg font-semibold mb-4">Distribución de Mensajes y Respuestas por Hora</h3>
+          <h3 className="text-lg font-semibold mb-4">
+            Distribución de Mensajes y Respuestas por Hora
+          </h3>
           <div className="h-64">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={hourlyMetrics}>
@@ -229,22 +350,46 @@ const ResponseTimeDashboard = () => {
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Line type="monotone" dataKey="messages" name="Mensajes Promedio" stroke="#8884d8" />
-                <Line type="monotone" dataKey="lizbeth" name="Lizbeth" stroke="#82ca9d" />
-                <Line type="monotone" dataKey="zoey" name="Zoey" stroke="#ffc658" />
-                <Line type="monotone" dataKey="csSupport" name="CS Support" stroke="#ff8042" />
+                <Line
+                  type="monotone"
+                  dataKey="messages"
+                  name="Mensajes Promedio"
+                  stroke="#8884d8"
+                />
+                <Line
+                  type="monotone"
+                  dataKey="lizbeth"
+                  name="Lizbeth"
+                  stroke="#82ca9d"
+                />
+                <Line
+                  type="monotone"
+                  dataKey="zoey"
+                  name="Zoey"
+                  stroke="#ffc658"
+                />
+                <Line
+                  type="monotone"
+                  dataKey="csSupport"
+                  name="CS Support"
+                  stroke="#ff8042"
+                />
               </LineChart>
             </ResponsiveContainer>
           </div>
         </div>
 
-         {/* Observaciones adicionales */}
-         <div className="mt-6">
-          <h3 className="text-lg font-semibold mb-4">Observaciones de las Métricas Detalladas</h3>
+        {/* Observaciones adicionales */}
+        <div className="mt-6">
+          <h3 className="text-lg font-semibold mb-4">
+            Observaciones de las Métricas Detalladas
+          </h3>
           <ul className="space-y-2">
             <li className="flex items-start space-x-2">
               <span className="font-medium">1.</span>
-              <span>Hora pico de mensajes: 10:00 AM con 39.6 mensajes promedio</span>
+              <span>
+                Hora pico de mensajes: 10:00 AM con 39.6 mensajes promedio
+              </span>
             </li>
             <li className="flex items-start space-x-2">
               <span className="font-medium">2.</span>
@@ -256,7 +401,9 @@ const ResponseTimeDashboard = () => {
             </li>
             <li className="flex items-start space-x-2">
               <span className="font-medium">4.</span>
-              <span>CS Support mantiene presencia constante durante todo el día</span>
+              <span>
+                CS Support mantiene presencia constante durante todo el día
+              </span>
             </li>
           </ul>
         </div>
