@@ -24,19 +24,24 @@ const WeekdayAnalysis = () => {
   ];
 
   const hourlyData = [
-    { hora: "07:00", lizbeth: 0, zoey: 15, csupport: 5 },
-    { hora: "08:00", lizbeth: 0, zoey: 18, csupport: 8 },
-    { hora: "09:00", lizbeth: 25, zoey: 12, csupport: 15 },
-    { hora: "10:00", lizbeth: 35, zoey: 8, csupport: 20 },
-    { hora: "11:00", lizbeth: 38, zoey: 5, csupport: 22 },
-    { hora: "12:00", lizbeth: 30, zoey: 0, csupport: 18 },
-    { hora: "13:00", lizbeth: 28, zoey: 0, csupport: 15 },
-    { hora: "14:00", lizbeth: 32, zoey: 0, csupport: 17 },
-    { hora: "15:00", lizbeth: 35, zoey: 0, csupport: 20 },
-    { hora: "16:00", lizbeth: 30, zoey: 0, csupport: 16 },
-    { hora: "17:00", lizbeth: 25, zoey: 0, csupport: 12 },
-    { hora: "18:00", lizbeth: 20, zoey: 0, csupport: 10 },
-    { hora: "19:00", lizbeth: 15, zoey: 0, csupport: 8 },
+    { hour: "07:00", messages: 2.8, maxTime: 35, minTime: 8, lizbeth: 0, zoey: 15, csSupport: 12 },
+    { hour: "08:00", messages: 36.0, maxTime: 42, minTime: 5, lizbeth: 0, zoey: 28, csSupport: 18 },
+    { hour: "09:00", messages: 19.9, maxTime: 38, minTime: 4, lizbeth: 25, zoey: 22, csSupport: 15 },
+    { hour: "10:00", messages: 39.6, maxTime: 45, minTime: 3, lizbeth: 35, zoey: 18, csSupport: 20 },
+    { hour: "11:00", messages: 19.8, maxTime: 52, minTime: 5, lizbeth: 38, zoey: 5, csSupport: 22 },
+    { hour: "12:00", messages: 14.3, maxTime: 48, minTime: 6, lizbeth: 30, zoey: 0, csSupport: 18 },
+    { hour: "13:00", messages: 14.4, maxTime: 55, minTime: 7, lizbeth: 28, zoey: 0, csSupport: 15 },
+    { hour: "14:00", messages: 15.1, maxTime: 50, minTime: 5, lizbeth: 32, zoey: 0, csSupport: 17 },
+    { hour: "15:00", messages: 13.9, maxTime: 58, minTime: 6, lizbeth: 35, zoey: 0, csSupport: 20 },
+    { hour: "16:00", messages: 12.7, maxTime: 62, minTime: 8, lizbeth: 30, zoey: 0, csSupport: 16 },
+    { hour: "17:00", messages: 11.8, maxTime: 65, minTime: 7, lizbeth: 25, zoey: 0, csSupport: 12 },
+    { hour: "18:00", messages: 12.5, maxTime: 70, minTime: 9, lizbeth: 20, zoey: 0, csSupport: 10 },
+    { hour: "19:00", messages: 22.0, maxTime: 75, minTime: 10, lizbeth: 0, zoey: 0, csSupport: 8 },
+    { hour: "20:00", messages: 14.3, maxTime: 80, minTime: 12, lizbeth: 0, zoey: 10, csSupport: 6 },
+    { hour: "21:00", messages: 9.6, maxTime: 85, minTime: 15, lizbeth: 0, zoey: 8, csSupport: 5 },
+    { hour: "22:00", messages: 9.2, maxTime: 90, minTime: 18, lizbeth: 0, zoey: 6, csSupport: 4 },
+    { hour: "23:00", messages: 5.6, maxTime: 95, minTime: 20, lizbeth: 0, zoey: 4, csSupport: 3 },
+    { hour: "00:00", messages: 2.5, maxTime: 100, minTime: 25, lizbeth: 0, zoey: 0, csSupport: 2 }
   ];
 
   const dailyDistribution = {
@@ -76,40 +81,79 @@ const WeekdayAnalysis = () => {
         </div>
 
         <div className="space-y-8">
-          <div>
-            <h3 className="text-lg font-semibold mb-4">
-              Distribución por Hora
-            </h3>
-            <div className="h-64">
-              <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={hourlyData}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="hora" />
-                  <YAxis />
-                  <Tooltip />
-                  <Legend />
-                  <Line
-                    type="monotone"
-                    dataKey="lizbeth"
-                    name="Lizbeth"
-                    stroke="#8884d8"
-                  />
-                  <Line
-                    type="monotone"
-                    dataKey="zoey"
-                    name="Zoey"
-                    stroke="#82ca9d"
-                  />
-                  <Line
-                    type="monotone"
-                    dataKey="csupport"
-                    name="CS Support"
-                    stroke="#ffc658"
-                  />
-                </LineChart>
-              </ResponsiveContainer>
-            </div>
+           {/* Tabla de métricas detalladas */}
+        <div className="mb-8 overflow-x-auto">
+          <table className="min-w-full border-collapse">
+            <thead>
+              <tr className="bg-gray-50">
+                <th className="border p-2 text-left">Hora</th>
+                <th className="border p-2 text-right">Mensajes Promedio</th>
+                <th className="border p-2 text-right">Tiempo Máx. (min)</th>
+                <th className="border p-2 text-right">Tiempo Mín. (min)</th>
+                <th className="border p-2 text-right">Lizbeth</th>
+                <th className="border p-2 text-right">Zoey</th>
+                <th className="border p-2 text-right">CS Support</th>
+              </tr>
+            </thead>
+            <tbody>
+              {hourlyData.map((row) => (
+                <tr key={row.hour} className="hover:bg-gray-50">
+                  <td className="border p-2 font-medium">{row.hour}</td>
+                  <td className="border p-2 text-right">{row.messages.toFixed(1)}</td>
+                  <td className="border p-2 text-right">{row.maxTime}</td>
+                  <td className="border p-2 text-right">{row.minTime}</td>
+                  <td className="border p-2 text-right">{row.lizbeth}</td>
+                  <td className="border p-2 text-right">{row.zoey}</td>
+                  <td className="border p-2 text-right">{row.csSupport}</td>
+                </tr>
+              ))}
+            </tbody>
+            <tfoot className="bg-gray-50">
+              <tr>
+                <td className="border p-2 font-medium">Total</td>
+                <td className="border p-2 text-right">
+                  {hourlyData.reduce((sum, row) => sum + row.messages, 0).toFixed(1)}
+                </td>
+                <td className="border p-2 text-right">
+                  {Math.max(...hourlyData.map(row => row.maxTime))}
+                </td>
+                <td className="border p-2 text-right">
+                  {Math.min(...hourlyData.map(row => row.minTime))}
+                </td>
+                <td className="border p-2 text-right">
+                  {hourlyData.reduce((sum, row) => sum + row.lizbeth, 0)}
+                </td>
+                <td className="border p-2 text-right">
+                  {hourlyData.reduce((sum, row) => sum + row.zoey, 0)}
+                </td>
+                <td className="border p-2 text-right">
+                  {hourlyData.reduce((sum, row) => sum + row.csSupport, 0)}
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+
+        {/* Gráfica de mensajes por hora */}
+        <div>
+          <h3 className="text-lg font-semibold mb-4">Distribución de Mensajes y Respuestas por Hora</h3>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart data={hourlyData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="hour" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Line type="monotone" dataKey="messages" name="Mensajes Promedio" stroke="#8884d8" />
+                <Line type="monotone" dataKey="lizbeth" name="Lizbeth" stroke="#82ca9d" />
+                <Line type="monotone" dataKey="zoey" name="Zoey" stroke="#ffc658" />
+                <Line type="monotone" dataKey="csSupport" name="CS Support" stroke="#ff8042" />
+              </LineChart>
+            </ResponsiveContainer>
           </div>
+        </div>
+
 
           <div>
             <h3 className="text-lg font-semibold mb-4">Actividad Semanal</h3>
