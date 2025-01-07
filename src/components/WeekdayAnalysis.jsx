@@ -44,11 +44,11 @@ const WeekdayAnalysis = () => {
     { hour: "00:00", messages: 2.5, maxTime: 100, minTime: 25, lizbeth: 0, zoey: 0, csSupport: 2 }
   ];
 
-  const dailyDistribution = {
-    "Lizbeth Bernardo": { L: 210, M: 195, X: 205, J: 198, V: 192 },
-    "Zoey Vela": { L: 45, M: 48, X: 42, J: 50, V: 40 },
-    "CS Support": { L: 120, M: 115, X: 118, J: 122, V: 113 },
-  };
+  // const dailyDistribution = {
+  //   "Lizbeth Bernardo": { L: 210, M: 195, X: 205, J: 198, V: 192 },
+  //   "Zoey Vela": { L: 45, M: 48, X: 42, J: 50, V: 40 },
+  //   "CS Support": { L: 120, M: 115, X: 118, J: 122, V: 113 },
+  // };
 
   return (
     <div className="space-y-6">

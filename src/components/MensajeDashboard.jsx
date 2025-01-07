@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import {
   BarChart,
   Bar,
-  LineChart,
-  Line,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -281,103 +279,10 @@ const ResponseTimeDashboard = () => {
           </div>
         </div>
         {/* Tabla de métricas detalladas */}
-        <div className="mb-8 overflow-x-auto">
-          <table className="min-w-full border-collapse">
-            <thead>
-              <tr className="bg-gray-50">
-                <th className="border p-2 text-left">Hora</th>
-                <th className="border p-2 text-right">Mensajes Promedio</th>
-                <th className="border p-2 text-right">Tiempo Máx. (min)</th>
-                <th className="border p-2 text-right">Tiempo Mín. (min)</th>
-                <th className="border p-2 text-right">Lizbeth</th>
-                <th className="border p-2 text-right">Zoey</th>
-                <th className="border p-2 text-right">CS Support</th>
-              </tr>
-            </thead>
-            <tbody>
-              {hourlyMetrics.map((row) => (
-                <tr key={row.hour} className="hover:bg-gray-50">
-                  <td className="border p-2 font-medium">{row.hour}</td>
-                  <td className="border p-2 text-right">
-                    {row.messages.toFixed(1)}
-                  </td>
-                  <td className="border p-2 text-right">{row.maxTime}</td>
-                  <td className="border p-2 text-right">{row.minTime}</td>
-                  <td className="border p-2 text-right">{row.lizbeth}</td>
-                  <td className="border p-2 text-right">{row.zoey}</td>
-                  <td className="border p-2 text-right">{row.csSupport}</td>
-                </tr>
-              ))}
-            </tbody>
-            <tfoot className="bg-gray-50">
-              <tr>
-                <td className="border p-2 font-medium">Total</td>
-                <td className="border p-2 text-right">
-                  {hourlyMetrics
-                    .reduce((sum, row) => sum + row.messages, 0)
-                    .toFixed(1)}
-                </td>
-                <td className="border p-2 text-right">
-                  {Math.max(...hourlyMetrics.map((row) => row.maxTime))}
-                </td>
-                <td className="border p-2 text-right">
-                  {Math.min(...hourlyMetrics.map((row) => row.minTime))}
-                </td>
-                <td className="border p-2 text-right">
-                  {hourlyMetrics.reduce((sum, row) => sum + row.lizbeth, 0)}
-                </td>
-                <td className="border p-2 text-right">
-                  {hourlyMetrics.reduce((sum, row) => sum + row.zoey, 0)}
-                </td>
-                <td className="border p-2 text-right">
-                  {hourlyMetrics.reduce((sum, row) => sum + row.csSupport, 0)}
-                </td>
-              </tr>
-            </tfoot>
-          </table>
-        </div>
+      
 
         {/* Gráfica de mensajes por hora */}
-        <div>
-          <h3 className="text-lg font-semibold mb-4">
-            Distribución de Mensajes y Respuestas por Hora
-          </h3>
-          <div className="h-64">
-            <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={hourlyMetrics}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="hour" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Line
-                  type="monotone"
-                  dataKey="messages"
-                  name="Mensajes Promedio"
-                  stroke="#8884d8"
-                />
-                <Line
-                  type="monotone"
-                  dataKey="lizbeth"
-                  name="Lizbeth"
-                  stroke="#82ca9d"
-                />
-                <Line
-                  type="monotone"
-                  dataKey="zoey"
-                  name="Zoey"
-                  stroke="#ffc658"
-                />
-                <Line
-                  type="monotone"
-                  dataKey="csSupport"
-                  name="CS Support"
-                  stroke="#ff8042"
-                />
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
-        </div>
+        
 
         {/* Observaciones adicionales */}
         <div className="mt-6">

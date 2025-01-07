@@ -4,6 +4,8 @@ import ZoeyWeekendAnalysis from "./components/ZoeyWeekendAnalysis";
 import Dashboard from "./components/Dashboard";
 import MensajeDashboard from "./components/MensajeDashboard";
 import WeekdayAnalysis from "./components/WeekdayAnalysis";
+import ResponseTimeAnalysis from "./components/ResponseTimeAnalysis";
+import SupportMetricsDashboard from "./components/SupportMetricsDashboard";
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
         <Distribucion />
         <WeekdayAnalysis />
         <ZoeyWeekendAnalysis />
+        <ResponseTimeAnalysis />
+        <SupportMetricsDashboard />
       </main>
     </div>
   );
