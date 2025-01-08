@@ -20,7 +20,7 @@ function App() {
       </header>
       <main>
         <Dashboard />
-        <MensajeDashboard />
+        {/* <MensajeDashboard /> */}
         <Distribucion />
         <WeekdayAnalysis />
         <ZoeyWeekendAnalysis />

@@ -229,7 +229,6 @@ const Dashboard = () => {
           <div>
             <h3 className="font-semibold mb-2">Zoey Vela:</h3>
             <ul className="list-disc pl-5">
-              <li>Reasignar como especialista de fin de semana</li>
               <li>Ajustar horario entre semana</li>
               <li>Expandir cobertura de fin de semana</li>
             </ul>
