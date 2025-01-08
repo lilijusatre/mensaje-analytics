@@ -58,7 +58,7 @@ const SupportMetricsDashboard = () => {
     },
     {
       category: "Mensajes recibidos fuera de horario",
-      quantity: 4967,
+      quantity: 4804,
       percentage: 75.7
     },
     {
@@ -76,14 +76,12 @@ const SupportMetricsDashboard = () => {
   return (
     <div className="p-6 max-w-6xl mx-auto">
       <div className="bg-blue-50 p-4 rounded-lg mb-8">
-        <h2 className="text-lg font-bold mb-2">Notas importantes:</h2>
+        <h2 className="text-lg font-bold mb-2">Nota:</h2>
         <ul className="list-disc pl-6 space-y-1">
-          <li>Los porcentajes para respuestas en horario se calculan sobre los mensajes recibidos en ese horario</li>
-          <li>Los porcentajes para respuestas fuera de horario se calculan sobre los mensajes recibidos fuera de horario</li>
-          <li>Todos los horarios están ajustados a la zona horaria de México (UTC-6)</li>
-          <li>Observaciones importantes: </li> 
-          <li>Lizbeth: Recibe 1,755 mensajes durante su horario y responde 1,077 de ellos (61.4%) De los 4,804 mensajes que llegan fuera de su horario, responde 1,250 (26%) Está respondiendo más mensajes que llegan fuera de su horario que dentro</li>
-          <li>Zoey: Recibe 1,592 mensajes durante su horario y responde 356 de ellos (22.4%)   De los 4,967 mensajes que llegan fuera de su horario, responde 482 (9.7%) También está atendiendo una cantidad significativa de mensajes fuera de su horario</li>
+          <li>Todos los horarios están ajustados a la zona horaria de México (UTC-6)</li><br></br>
+          <li>Observaciones importantes: <br></br><br></br> 
+          Lizbeth: Recibe 1,755 mensajes durante su horario y responde 1,077 de ellos (61.4%) <br></br> De los mensajes que llegan fuera de su horario, 26% <br></br>Está respondiendo más mensajes que llegan fuera de su horario que dentro de su horario <br></br><br></br>
+          Zoey: Recibe 1,592 mensajes durante su horario y responde 356 de ellos (22.4%) <br></br>De los mensajes que llegan fuera de su horario, responde 9.7% <br></br> También está atendiendo mensajes fuera de su horario</li>
         </ul>
       </div>
 
@@ -97,6 +95,7 @@ const SupportMetricsDashboard = () => {
         data={zoeyData}
       />
     </div>
+    
   );
 };
 

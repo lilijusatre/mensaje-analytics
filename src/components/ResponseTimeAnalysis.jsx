@@ -98,7 +98,7 @@ const ResponseTimeAnalysis = () => {
     };
 
     loadData();
-  }, []);
+  });
 
   const chartData = agentStats.map(agent => ({
     nombre: agent.nombre,
